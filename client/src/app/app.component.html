@@ -1,0 +1,97 @@
+<div class="row">
+<h1>
+  {{title}}
+</h1>
+
+</div>
+
+<div class="col-md-8">
+  <div class="row">
+    <h3 *ngIf="state">Welcome {{model.user}}, you are now chatting in {{model.chatroom}}</h3>
+
+<div *ngIf="state" class="row">
+  <div class="chatfield">
+<ul>
+  <p class="chatMsg" *ngFor="let message of blogMessages">
+    {{message.user}} [{{message.date | date: 'HH:mm dd/MM/yyyy'}}] : "{{message.msgTxt}}" in {{message.chatroom}}
+  </p>
+</ul>
+  </div>
+</div>
+  </div>
+
+
+<form #1form="ngForm" (ngSubmit)="submitName()">
+  <div *ngIf="state==false">
+
+    <div class="row">
+    <div class="form-group">
+      <label for="user">Name</label>
+      <input type="text"  class="form-control" id="user"
+             required
+             [(ngModel)]="model.user" name="user">
+    </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group">
+    <label for="chatroom">Choose a chatroom</label><br/>
+    <select
+            name = "chatroom"
+
+            [(ngModel)]="model.chatroom"
+    >
+      <option selected="true" disabled="disabled">Choose chatroom</option>
+      <option *ngFor="let blog of blogMessages">
+
+        {{blog.chatroom}}
+
+      </option>
+    </select>
+      </div>
+    </div>
+
+    <div class="row">
+    <div class="form-group">
+      <label for="chatroom">Or create your own chatroom:</label>
+      <input type="text" class="form-control" id="chatroom"
+             required
+             [(ngModel)]="model.chatroom" name="chatroom">
+    </div>
+
+    <button type="submit" class="btn btn-default">Join</button>
+  </div>
+  </div>
+
+</form>
+
+  <div class="row">
+<form #2form="ngForm" (ngSubmit)="submitBlog()" class="form-horizontal">
+  <div *ngIf="state">
+    <div class="form-group">
+      <input type="hidden"  class="form-control" id="user2"
+             required
+             [(ngModel)]="model.user" name="user">
+    </div>
+    <div class="form-group">
+      <input type="hidden" class="form-control" id="chatroom2"
+             required
+             [(ngModel)]="model.chatroom" name="chatroom">
+    </div>
+    <div class="input-group">
+      <label for="msgTxt" class="input-group-addon">{{model.user}}: </label>
+      <input type="text" class="form-control" id="msgTxt"
+             required
+             [(ngModel)]="model.msgTxt" name="msgTxt">
+
+    <div class="input-group-btn">
+    <button type="submit" class="btn btn-default" class="btn btn-default form-control">Send</button>
+    </div>
+
+    </div>
+  </div>
+</form>
+  </div>
+</div>
+
+

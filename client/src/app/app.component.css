@@ -1,0 +1,17 @@
+body {
+    background-color: lightseagreen;
+}
+
+.container {
+    background-color: white;
+    padding: 50px 100px;
+    margin-top: 100px;
+    border-radius: 25px;
+}
+.chatfield {
+    border: 1px solid lightseagreen;
+    height: 400px;
+    overflow-y: scroll;
+    padding: 10px;
+    font-size: 14px;
+}
